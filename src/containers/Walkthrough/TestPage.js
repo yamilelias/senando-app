@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, StatusBar} from 'react-native';
+import { StyleSheet, View, StatusBar, AsyncStorage } from 'react-native';
 
 import WorkThrough from 'WorkThrough';
 import {icons} from '@assets';

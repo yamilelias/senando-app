@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-import RootNavigator from './rootNavigator';
+import WalkthroughNavigator from './walkthroughNavigator';
 
 export default class App extends Component {
     render() {
         return (
-            <RootNavigator/>
+            <WalkthroughNavigator />
         );
     }
 }
