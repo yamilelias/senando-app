@@ -12,9 +12,10 @@ function Home() {
   useEffect(() => {
     setIsFetching(true);
     Youtube.search({
-      "part": "id,snippet",
-      "channelId": "UCovgvn883vmBMeAOo2OyXOQ",
-      "maxResults": 30
+      part: 'id,snippet',
+      channelId: 'UCovgvn883vmBMeAOo2OyXOQ',
+      maxResults: 50,
+      // q: 'c'
     }, function then(response) {
       console.log('response', response);
       setElements(response.data.items);
