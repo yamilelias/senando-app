@@ -8,7 +8,6 @@ import { Block } from "galio-framework";
 
 // screens
 import Home from "../screens/Home";
-import Onboarding from "../screens/Onboarding";
 import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
@@ -32,10 +31,6 @@ const transitionConfig = (transitionProps, prevTransitionProps) => ({
     const thisSceneIndex = scene.index;
     const width = layout.initWidth;
 
-    const scale = position.interpolate({
-      inputRange: [thisSceneIndex - 1, thisSceneIndex, thisSceneIndex + 1],
-      outputRange: [4, 1, 1]
-    });
     const opacity = position.interpolate({
       inputRange: [thisSceneIndex - 1, thisSceneIndex, thisSceneIndex + 1],
       outputRange: [0, 1, 1]
@@ -63,7 +58,7 @@ const ElementsStack = createStackNavigator({
   Elements: {
     screen: Elements,
     navigationOptions: ({ navigation }) => ({
-      header: <Header title="Elements" navigation={navigation} />
+      header: <Header title="Elementos" navigation={navigation} />
     })
   }
 }, {
@@ -77,7 +72,7 @@ const ArticlesStack = createStackNavigator({
   Articles: {
     screen: Articles,
     navigationOptions: ({ navigation }) => ({
-      header: <Header title="Articles" navigation={navigation} />
+      header: <Header title="Artículos" navigation={navigation} />
     })
   }
 }, {
@@ -93,7 +88,7 @@ const ProfileStack = createStackNavigator(
       screen: Profile,
       navigationOptions: ({ navigation }) => ({
         header: (
-          <Header white transparent title="Profile" iconColor={'#FFF'} navigation={navigation} />
+          <Header white transparent title="Perfil" iconColor={'#FFF'} navigation={navigation} />
         ),
         headerTransparent: true
       })
@@ -110,7 +105,7 @@ const HomeStack = createStackNavigator(
     Home: {
       screen: Home,
       navigationOptions: ({ navigation }) => ({
-        header: <Header search options title="Home" navigation={navigation} />
+        header: <Header search title="Inicio" navigation={navigation} />
       })
     },
     Pro: {
@@ -133,17 +128,11 @@ const HomeStack = createStackNavigator(
 // divideru se baga ca si cum ar fi un ecrna dar nu-i nimic duh
 const AppStack = createDrawerNavigator(
   {
-    Onboarding: {
-      screen: Onboarding,
-      navigationOptions: {
-        drawerLabel: () => { }
-      }
-    },
     Home: {
       screen: HomeStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} title="Home" />
+          <DrawerItem focused={focused} title="Inicio" />
         )
       })
     },
@@ -151,7 +140,7 @@ const AppStack = createDrawerNavigator(
       screen: ProfileStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Profile" title="Profile" />
+          <DrawerItem focused={focused} screen="Profile" title="Perfil" />
         )
       })
     },
@@ -159,7 +148,7 @@ const AppStack = createDrawerNavigator(
       screen: Register,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Register" title="Account" />
+          <DrawerItem focused={focused} screen="Register" title="Registro" />
         )
       })
     },
@@ -167,7 +156,7 @@ const AppStack = createDrawerNavigator(
       screen: ElementsStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Elements" title="Elements" />
+          <DrawerItem focused={focused} screen="Elements" title="Elementos" />
         )
       })
     },
@@ -175,7 +164,7 @@ const AppStack = createDrawerNavigator(
       screen: ArticlesStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Articles" title="Articles" />
+          <DrawerItem focused={focused} screen="Articles" title="Artículos" />
         )
       })
     }
