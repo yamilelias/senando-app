@@ -1,42 +1,37 @@
-import React from 'react';
-import { StyleSheet, Dimensions, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Dimensions } from 'react-native';
 import { Block, theme } from 'galio-framework';
-
-import { Card } from '../components';
-import articles from '../constants/articles';
+import List from '../components/List';
+import Youtube from '../services/Youtube';
 const { width } = Dimensions.get('screen');
 
-class Home extends React.Component {
-  renderArticles = () => {
-    return (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.articles}>
-        <Block flex>
-          <Card item={articles[0]} horizontal  />
-          <Block flex row>
-            <Card item={articles[1]} style={{ marginRight: theme.SIZES.BASE }} />
-            <Card item={articles[2]} />
-          </Block>
-          <Card item={articles[3]} horizontal />
-          <Card item={articles[4]} full />
-        </Block>
-      </ScrollView>
-    )
-  }
+function Home() {
+  const [ isFetching, setIsFetching ] = useState(false);
+  const [ elements, setElements ] = useState([]);
 
-  render() {
-    return (
-      <Block flex center style={styles.home}>
-        {this.renderArticles()}
-      </Block>
-    );
-  }
+  useEffect(() => {
+    setIsFetching(true);
+    Youtube.search({
+      "part": "id,snippet",
+      "channelId": "UCovgvn883vmBMeAOo2OyXOQ",
+      "maxResults": 30
+    }, function then(response) {
+      console.log('response', response);
+      setElements(response.data.items);
+      setIsFetching(false);
+    });
+  }, []);
+
+  return (
+    <Block flex center style={styles.home}>
+      <List isFetching={isFetching} elements={elements}/>
+    </Block>
+  );
 }
 
 const styles = StyleSheet.create({
   home: {
-    width: width,    
+    width: width,
   },
   articles: {
     width: width - theme.SIZES.BASE * 2,
