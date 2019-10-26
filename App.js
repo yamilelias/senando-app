@@ -35,9 +35,9 @@ export default function App() {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   useEffect(() => {
-    AsyncStorage.getItem('alreadyLaunched').then((result) => {
+    AsyncStorage.getItem('welcome').then((result) => {
       if (result === null) {
-        AsyncStorage.setItem('alreadyLaunched', 'true').then((result) => {
+        AsyncStorage.setItem('welcome', 'true').then((result) => {
           console.log("null value recieved", result);
           setWalkthroughVisible(true);
         });

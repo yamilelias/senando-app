@@ -25,7 +25,7 @@ export default class TestPage extends Component {
     }
 
     _onWorkFlowFinished = () => {
-        this.props.navigation.navigate('AfterTestPage');
+        this.props.navigation.navigate('App');
     }
     render() {
         return (
