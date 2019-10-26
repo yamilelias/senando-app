@@ -12,14 +12,14 @@ const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
 
 const BellButton = ({isWhite, style, navigation}) => (
-  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
+  <TouchableOpacity style={[styles.button, style]} onPress={() => console.log('notifications')}>
     <Icon
       family="ArgonExtra"
       size={16}
       name="bell"
       color={argonTheme.COLORS[isWhite ? 'WHITE' : 'ICON']}
     />
-    <Block middle style={styles.notify} />
+    <Block right style={styles.notify} />
   </TouchableOpacity>
 );
 
@@ -35,7 +35,7 @@ const BasketButton = ({isWhite, style, navigation}) => (
 );
 
 const SearchButton = ({isWhite, style, navigation}) => (
-  <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
+  <TouchableOpacity style={[styles.button, style]} onPress={() => console.log('search')}>
     <Icon
       size={16}
       family="Galio"
@@ -52,16 +52,18 @@ class Header extends React.Component {
   }
   renderRight = () => {
     const { white, title, navigation } = this.props;
-    const { routeName } = navigation.state;
+    // const { routeName } = navigation.state;
 
     if (title === 'Title') {
       return [
         <BellButton key='chat-title' navigation={navigation} isWhite={white} />,
-        <BasketButton key='basket-title' navigation={navigation} isWhite={white} />
       ]
     }
 
-    switch (routeName) {
+    return null;
+
+    // Use it for notifications in the future
+    /*switch (routeName) {
       case 'Home':
         return ([
           <BellButton key='chat-home' navigation={navigation} isWhite={white} />,
@@ -103,19 +105,17 @@ class Header extends React.Component {
         ]);
       default:
         break;
-    }
+    }*/
   }
   renderSearch = () => {
-    const { navigation } = this.props;
     return (
       <Input
         right
         color="black"
         style={styles.search}
-        placeholder="Palabra..."
+        placeholder="Busca la Palabra..."
         placeholderTextColor={'#8898AA'}
-        onFocus={() => navigation.navigate('Pro')}
-        iconContent={<Icon size={16} color={theme.COLORS.MUTED} name="search1" family="AntDesign" />}
+        iconContent={<Icon size={16} onClick={() => console.log('search')} color={theme.COLORS.MUTED} name="search1" family="AntDesign" />}
       />
     );
   }
@@ -191,6 +191,7 @@ class Header extends React.Component {
             <Icon 
               name={back ? 'nav-left' : "menu-8"} family="ArgonExtra" 
               size={14} onPress={this.handleLeftPress} 
+              style={styles.menu}
               color={iconColor || argonTheme.COLORS.ICON}/>
           }
           leftStyle={{ paddingVertical: 12, flex: 0.2 }}
@@ -212,10 +213,14 @@ const styles = StyleSheet.create({
     padding: 12,
     position: 'relative',
   },
+  menu: {
+    marginLeft: 5,
+  },
   title: {
     width: '100%',
     fontSize: 16,
     fontWeight: 'bold',
+    marginLeft: 5,
   },
   navbar: {
     paddingVertical: 0,
