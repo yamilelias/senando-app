@@ -1,8 +1,8 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import TestPage from '../../containers/Walkthrough/TestPage';
-import AfterTestPage from '../../containers/Walkthrough/AfterTestPage';
+import TestPage from '../containers/Walkthrough/TestPage';
+import AfterTestPage from '../containers/Walkthrough/AfterTestPage';
 
 const AppNavigator = createStackNavigator(
     {
