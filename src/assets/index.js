@@ -1,7 +1,7 @@
 export const icons = {
-    "bell.png" : require('./images/bell.png'),
+    "ok.png" : require('./images/ok.png'),
     "home.png" : require('./images/home.png'),
     "plane.png" : require('./images/plane.png'),
-    "educate.png" : require('./images/educate.png'),
-    "react-native.png" : require('./images/react-native.png')
+    "reading.png" : require('./images/reading.png'),
+    "support.png" : require('./images/support.png')
 };

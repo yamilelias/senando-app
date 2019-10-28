@@ -10,9 +10,9 @@ const flowData = {
     fgColor: "white", 
     screens:
     [
-        {icon: "react-native.png", title: "React Native Walkthrough", description: "Welcome your users with a beautiful app walkthrough."},
-        {icon: "educate.png", title: "Educate", description: "Showcase features to new users so that they get to love your app."},
-        {icon: "bell.png", title: "Get Notified", description: "Describe the value proposition of each core feature."},
+        {icon: "ok.png", title: "Señando", description: "¡Bienvenido a tu nuevo compañero para el uso de Lengua de Señas Mexicana"},
+        {icon: "reading.png", title: "Aprende", description: "Los videos son grabados por un Instituto dedicado a promover el aprendizaje de esta lengua."},
+        {icon: "support.png", title: "Apoya", description: "¡Apóyanos en esta causa si te gusta nuestro trabajo!"},
     ]
 }
 
