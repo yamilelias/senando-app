@@ -17,7 +17,7 @@ const cardWidth = width - theme.SIZES.BASE * 2;
 
 function Details({ navigation }) {
   const data = {
-    title: "Music Album",
+    title: navigation.state.params.title && "Music Album",
     description:
       "Rock music is a genre of popular music. It developed during and after the 1960s in the United Kingdom.",
     image:

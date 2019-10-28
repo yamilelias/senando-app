@@ -69,21 +69,6 @@ const ElementsStack = createStackNavigator({
   transitionConfig
 });
 
-const DetailsStack = createStackNavigator({
-  Details: {
-    screen: Details,
-    navigationOptions: ({ navigation }) => ({
-      header: <Header title="Detalles" navigation={navigation} />,
-      title: navigation.getParam('title', 'Detalles'),
-    })
-  }
-}, {
-  cardStyle: {
-    backgroundColor: "#F8F9FE"
-  },
-  transitionConfig
-});
-
 const ArticlesStack = createStackNavigator({
   Articles: {
     screen: Articles,
@@ -132,6 +117,13 @@ const HomeStack = createStackNavigator(
         ),
         headerTransparent: true
       })
+    },
+    Details: {
+      screen: Details,
+      navigationOptions: ({ navigation }) => ({
+        header: <Header title="Detalles" navigation={navigation} />,
+        title: navigation.getParam('title', 'Detalles'),
+      })
     }
   },
   {
@@ -152,7 +144,7 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    Profile: {
+    /*Profile: {
       screen: ProfileStack,
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
@@ -176,14 +168,6 @@ const AppStack = createDrawerNavigator(
         )
       })
     },
-    Details: {
-      screen: DetailsStack,
-      navigationOptions: navOpt => ({
-        drawerLabel: ({ focused }) => (
-          <DrawerItem focused={focused} screen="Details" title="Detalles" />
-        )
-      })
-    },
     Articles: {
       screen: ArticlesStack,
       navigationOptions: navOpt => ({
@@ -191,7 +175,7 @@ const AppStack = createDrawerNavigator(
           <DrawerItem focused={focused} screen="Articles" title="Artículos" />
         )
       })
-    }
+    }*/
   },
   Menu
 );
