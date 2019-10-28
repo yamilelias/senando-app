@@ -13,6 +13,7 @@ import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
+import Details from '../screens/Details';
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";
@@ -59,6 +60,21 @@ const ElementsStack = createStackNavigator({
     screen: Elements,
     navigationOptions: ({ navigation }) => ({
       header: <Header title="Elementos" navigation={navigation} />
+    })
+  }
+}, {
+  cardStyle: {
+    backgroundColor: "#F8F9FE"
+  },
+  transitionConfig
+});
+
+const DetailsStack = createStackNavigator({
+  Details: {
+    screen: Details,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Detalles" navigation={navigation} />,
+      title: navigation.getParam('title', 'Detalles'),
     })
   }
 }, {
@@ -125,7 +141,7 @@ const HomeStack = createStackNavigator(
     transitionConfig
   }
 );
-// divideru se baga ca si cum ar fi un ecrna dar nu-i nimic duh
+
 const AppStack = createDrawerNavigator(
   {
     Home: {
@@ -157,6 +173,14 @@ const AppStack = createDrawerNavigator(
       navigationOptions: navOpt => ({
         drawerLabel: ({ focused }) => (
           <DrawerItem focused={focused} screen="Elements" title="Elementos" />
+        )
+      })
+    },
+    Details: {
+      screen: DetailsStack,
+      navigationOptions: navOpt => ({
+        drawerLabel: ({ focused }) => (
+          <DrawerItem focused={focused} screen="Details" title="Detalles" />
         )
       })
     },

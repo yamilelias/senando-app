@@ -1,7 +1,7 @@
 import React from 'react';
 import { withNavigation } from 'react-navigation';
 import PropTypes from 'prop-types';
-import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
 
 import { argonTheme } from '../constants';
@@ -10,6 +10,7 @@ import { argonTheme } from '../constants';
 class Card extends React.Component {
   render() {
     const { navigation, item, horizontal, full, style, ctaColor, imageStyle } = this.props;
+    const { title, image, cta } = item;
     
     const imageStyles = [
       full ? styles.fullImage : styles.horizontalImage,
@@ -23,15 +24,15 @@ class Card extends React.Component {
 
     return (
       <Block row={horizontal} card flex style={cardContainer}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('Details', { title })}>
           <Block flex style={imgContainer}>
-            <Image source={{uri: item.image}} style={imageStyles} />
+            <Image source={{uri: image}} style={imageStyles} />
           </Block>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('Pro')}>
+        <TouchableWithoutFeedback onPress={() => navigation.navigate('Details', { title })}>
           <Block flex space="between" style={styles.cardDescription}>
-            <Text size={14} style={styles.cardTitle}>{item.title}</Text>
-            <Text size={12} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} bold>{item.cta}</Text>
+            <Text size={14} style={styles.cardTitle}>{title}</Text>
+            <Text size={12} muted={!ctaColor} color={ctaColor || argonTheme.COLORS.ACTIVE} bold>{cta}</Text>
           </Block>
         </TouchableWithoutFeedback>
       </Block>
@@ -45,7 +46,8 @@ Card.propTypes = {
   full: PropTypes.bool,
   ctaColor: PropTypes.string,
   imageStyle: PropTypes.any,
-}
+  title: PropTypes.string,
+};
 
 const styles = StyleSheet.create({
   card: {
