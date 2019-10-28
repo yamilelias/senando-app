@@ -16,14 +16,9 @@ const thumbMeasure = (width - 48 - 32) / 3;
 const cardWidth = width - theme.SIZES.BASE * 2;
 
 function Details({ navigation }) {
-  const data = {
-    title: navigation.state.params.title && "Music Album",
-    description:
-      "Rock music is a genre of popular music. It developed during and after the 1960s in the United Kingdom.",
-    image:
-      "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?fit=crop&w=840&q=80",
-    price: "$125"
-  };
+  console.log(navigation);
+  const { title } = navigation.state.params;
+  const image = 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?fit=crop&w=840&q=80';
 
   return (
     <Block flex center>
@@ -33,31 +28,15 @@ function Details({ navigation }) {
         <Block flex style={styles.group}>
           <Block flex>
             <Block flex style={{ marginTop: theme.SIZES.BASE / 2 }}>
-              <Block center style={styles.productItem}>
+              <Block center style={styles.description}>
                 <Image
                   resizeMode="cover"
-                  style={styles.productImage}
-                  source={{ uri: data.image }}
+                  style={styles.video}
+                  source={{ uri: image }}
                 />
-                <Block center style={{ paddingHorizontal: theme.SIZES.BASE }}>
-                  <Text
-                    center
-                    size={16}
-                    color={theme.COLORS.MUTED}
-                    style={styles.productPrice}
-                  >
-                    {data.price}
-                  </Text>
+                <Block center style={styles.title}>
                   <Text center size={34}>
-                    {data.title}
-                  </Text>
-                  <Text
-                    center
-                    size={16}
-                    color={theme.COLORS.MUTED}
-                    style={styles.productDescription}
-                  >
-                    {data.description}
+                    {title}
                   </Text>
                 </Block>
               </Block>
@@ -78,30 +57,7 @@ const styles = StyleSheet.create({
   group: {
     paddingTop: theme.SIZES.BASE
   },
-  albumThumb: {
-    borderRadius: 4,
-    marginVertical: 4,
-    alignSelf: "center",
-    width: thumbMeasure,
-    height: thumbMeasure
-  },
-  category: {
-    backgroundColor: theme.COLORS.WHITE,
-    marginVertical: theme.SIZES.BASE / 2,
-    borderWidth: 0
-  },
-  categoryTitle: {
-    height: "100%",
-    paddingHorizontal: theme.SIZES.BASE,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  imageBlock: {
-    overflow: "hidden",
-    borderRadius: 4
-  },
-  productItem: {
+  description: {
     width: cardWidth - theme.SIZES.BASE * 2,
     marginHorizontal: theme.SIZES.BASE,
     shadowColor: "black",
@@ -109,18 +65,14 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOpacity: 0.2
   },
-  productImage: {
+  video: {
     width: cardWidth - theme.SIZES.BASE,
     height: cardWidth - theme.SIZES.BASE,
     borderRadius: 3
   },
-  productPrice: {
+  title: {
     paddingTop: theme.SIZES.BASE,
-    paddingBottom: theme.SIZES.BASE / 2
-  },
-  productDescription: {
-    paddingTop: theme.SIZES.BASE
-    // paddingBottom: theme.SIZES.BASE * 2,
+    paddingHorizontal: theme.SIZES.BASE
   },
   back: {
     paddingBottom: theme.SIZES.BASE,
