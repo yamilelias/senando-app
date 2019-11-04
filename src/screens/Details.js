@@ -13,14 +13,10 @@ import { Block, Text, theme } from "galio-framework";
 import { argonTheme } from "../constants/";
 
 const { width } = Dimensions.get("screen");
-
-const thumbMeasure = (width - 48 - 32) / 3;
 const cardWidth = width - theme.SIZES.BASE * 2;
 
 function Details({ navigation }) {
-  console.log(navigation);
   const { title, id } = navigation.state.params;
-  const image = 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?fit=crop&w=840&q=80';
 
   return (
     <Block flex center>
@@ -86,7 +82,6 @@ const styles = StyleSheet.create({
   },
   back: {
     paddingBottom: theme.SIZES.BASE,
-    // paddingHorizontal: theme.SIZES.BASE * 2,
     marginTop: 22,
     color: argonTheme.COLORS.HEADER
   }

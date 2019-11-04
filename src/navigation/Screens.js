@@ -109,15 +109,6 @@ const HomeStack = createStackNavigator(
         header: <Header search title="Inicio" navigation={navigation} />
       })
     },
-    Pro: {
-      screen: Pro,
-      navigationOptions: ({ navigation }) => ({
-        header: (
-          <Header left={<Block />} white transparent title="" navigation={navigation} />
-        ),
-        headerTransparent: true
-      })
-    },
     Details: {
       screen: Details,
       navigationOptions: ({ navigation }) => ({
