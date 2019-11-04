@@ -17,7 +17,6 @@ function Home() {
       maxResults: 50,
       // q: 'c'
     }, function then(response) {
-      console.log('response', response);
       setElements(response.data.items);
       setIsFetching(false);
     });

@@ -10,6 +10,7 @@ function List({ elements }) {
   renderElements = (value, index) => {
     const { title, thumbnails } = value.snippet;
     const item = {
+      id: value.id.videoId,
       title: `${title.charAt(0).toUpperCase()}${title.substr(1, title.length).toLowerCase()}`,
       image: thumbnails.default.url,
       cta: 'Ver Video',

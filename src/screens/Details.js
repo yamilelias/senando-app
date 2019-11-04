@@ -4,8 +4,10 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  SafeAreaView
 } from "react-native";
+import { WebView } from 'react-native-webview'; 
 import { withNavigation } from 'react-navigation';
 import { Block, Text, theme } from "galio-framework";
 import { argonTheme } from "../constants/";
@@ -17,7 +19,7 @@ const cardWidth = width - theme.SIZES.BASE * 2;
 
 function Details({ navigation }) {
   console.log(navigation);
-  const { title } = navigation.state.params;
+  const { title, id } = navigation.state.params;
   const image = 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?fit=crop&w=840&q=80';
 
   return (
@@ -29,11 +31,15 @@ function Details({ navigation }) {
           <Block flex>
             <Block flex style={{ marginTop: theme.SIZES.BASE / 2 }}>
               <Block center style={styles.description}>
-                <Image
-                  resizeMode="cover"
-                  style={styles.video}
-                  source={{ uri: image }}
-                />
+                <SafeAreaView style={styles.safeArea}>
+                  { 
+                    <WebView
+                      source={{ uri: `https://www.youtube.com/embed/${id}`}}
+                      startInLoadingState={true}
+                      style={styles.video}
+                    />
+                  }
+                </SafeAreaView>
                 <Block center style={styles.title}>
                   <Text center size={34}>
                     {title}
@@ -64,6 +70,10 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 7 },
     shadowRadius: 10,
     shadowOpacity: 0.2
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff'
   },
   video: {
     width: cardWidth - theme.SIZES.BASE,
