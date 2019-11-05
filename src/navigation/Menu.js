@@ -14,7 +14,7 @@ const { width } = Dimensions.get("screen");
 
 const Drawer = props => (
   <Block style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-    <Block flex={0.05} style={styles.header}>
+    <Block flex={0.1} style={styles.header}>
       <Image styles={styles.logo} source={Images.Logo} />
     </Block>
     <Block flex>
