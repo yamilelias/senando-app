@@ -4,8 +4,8 @@ import { TouchableOpacity, StyleSheet, Platform, Dimensions } from 'react-native
 import { Button, Block, NavBar, Text, theme } from 'galio-framework';
 
 import Icon from './Icon';
-import Input from './Input';
 import Tabs from './Tabs';
+import Search from './Search';
 import argonTheme from '../constants/Theme';
 
 const { height, width } = Dimensions.get('window');
@@ -109,14 +109,7 @@ class Header extends React.Component {
   }
   renderSearch = () => {
     return (
-      <Input
-        right
-        color="black"
-        style={styles.search}
-        placeholder="Busca la Palabra..."
-        placeholderTextColor={'#8898AA'}
-        iconContent={<Icon size={16} onClick={() => console.log('search')} color={theme.COLORS.MUTED} name="search1" family="AntDesign" />}
-      />
+      <Search />
     );
   }
   renderOptions = () => {
@@ -167,7 +160,7 @@ class Header extends React.Component {
   render() {
     const { back, title, white, transparent, bgColor, iconColor, titleColor, navigation, ...props } = this.props;
     const { routeName } = navigation.state;
-    const noShadow = ['Search', 'Categories', 'Deals', 'Pro', 'Profile'].includes(routeName);
+    const noShadow = ['Search', 'Categories', 'Deals', 'Home', 'Profile'].includes(routeName);
     const headerStyles = [
       !noShadow ? styles.shadow : null,
       transparent ? { backgroundColor: 'rgba(0,0,0,0)' } : null,
@@ -251,14 +244,6 @@ const styles = StyleSheet.create({
   divider: {
     borderRightWidth: 0.3,
     borderRightColor: theme.COLORS.ICON,
-  },
-  search: {
-    height: 48,
-    width: width - 32,
-    marginHorizontal: 16,
-    borderWidth: 1,
-    borderRadius: 3,
-    borderColor: argonTheme.COLORS.BORDER
   },
   options: {
     marginBottom: 24,

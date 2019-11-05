@@ -42,7 +42,7 @@ export default function App() {
           setWalkthroughVisible(true);
         });
       } else {
-        console.log("result", result);
+        console.log("The application it's already cached", result);
       }
     });
   }, []);

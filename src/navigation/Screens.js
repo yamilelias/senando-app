@@ -106,7 +106,7 @@ const HomeStack = createStackNavigator(
     Home: {
       screen: Home,
       navigationOptions: ({ navigation }) => ({
-        header: <Header search title="Inicio" navigation={navigation} />
+        header: <Header title="Inicio" navigation={navigation} />
       })
     },
     Details: {

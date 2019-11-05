@@ -2,7 +2,6 @@ import React from "react";
 import {
   ScrollView,
   StyleSheet,
-  Image,
   Dimensions,
   TouchableWithoutFeedback,
   SafeAreaView
