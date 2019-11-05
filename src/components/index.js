@@ -8,6 +8,7 @@ import Switch from './Switch';
 import Search from './Search';
 import Select from './Select';
 import List from './List';
+import Tabs from './Tabs';
 
 export {
   Button,
@@ -19,5 +20,6 @@ export {
   Search,
   List,
   Switch, 
-  Select
+  Select,
+  Tabs
 };
