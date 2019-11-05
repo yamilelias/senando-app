@@ -1,8 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Block, theme } from 'galio-framework';
-import List from '../components/List';
-import Search from '../components/Search';
+import { Search, List } from '../components';
 import Youtube from '../services/Youtube';
 import argonTheme from '../constants/Theme';
  
@@ -11,6 +10,7 @@ const { width } = Dimensions.get('screen');
 function Home() {
   const [ isFetching, setIsFetching ] = useState(false);
   const [ elements, setElements ] = useState([]);
+  const [ error, setError ] = useState(false);
   const [ value, setValue ] = useState('');
 
   const search = () => {
@@ -19,10 +19,12 @@ function Home() {
       part: 'id,snippet',
       channelId: 'UCovgvn883vmBMeAOo2OyXOQ',
       maxResults: 50,
-      q: value
+      q: encodeURIComponent(value)
     }, function then(response) {
       setElements(response.data.items);
       setIsFetching(false);
+    }, function error(response) {
+      setError(true);
     });
   };
 
@@ -36,7 +38,7 @@ function Home() {
         <Search value={value} onChangeText={(text) => setValue(text)} onSubmitEditing={search} />
       </Block>
       <Block flex center style={styles.home}>
-        <List isFetching={isFetching} elements={elements}/>
+        <List isFetching={isFetching} error={error} elements={elements}/>
       </Block>
     </Fragment>
   );

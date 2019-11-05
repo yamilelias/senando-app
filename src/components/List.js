@@ -6,7 +6,7 @@ import { Card } from '../components';
 import withLoading from './withLoading';
 const { width } = Dimensions.get('screen');
 
-function List({ elements }) {
+function List({ elements, error }) {
   renderElements = (value, index) => {
     const { title, thumbnails } = value.snippet;
     const item = {
@@ -22,12 +22,24 @@ function List({ elements }) {
     )
   }
 
+  const renderContent = () => {
+    if(error) {
+      return <Text>Ha ocurrido un error... Lo siento :(</Text>
+    }
+
+    if(!elements.length) {
+      return <Text>No se encontraron videos</Text>
+    }
+
+    return elements.map(renderElements);
+  }
+
   return (
     <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.list}>
-        <Block flex>
-          {elements.map(renderElements)}
+        <Block flex center>
+          {renderContent()}
         </Block>
       </ScrollView>
   );
@@ -38,6 +50,9 @@ List.defaultProps = {
 };
 
 const styles = StyleSheet.create({
+  message: {
+    textAlign: "center"
+  },
   list: {
     width: width - theme.SIZES.BASE * 2,
     paddingVertical: theme.SIZES.BASE,

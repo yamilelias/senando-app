@@ -5,7 +5,9 @@ import Icon from './Icon';
 import Header from './Header';
 import Input from './Input';
 import Switch from './Switch';
+import Search from './Search';
 import Select from './Select';
+import List from './List';
 
 export {
   Button,
@@ -14,6 +16,8 @@ export {
   Icon,
   Input,
   Header,
+  Search,
+  List,
   Switch, 
   Select
 };
