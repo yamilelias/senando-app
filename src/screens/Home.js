@@ -17,7 +17,7 @@ function Home() {
   const query = {
     part: 'id,snippet',
     channelId: 'UCovgvn883vmBMeAOo2OyXOQ',
-    maxResults: 5,
+    maxResults: 50,
     q: encodeURIComponent(value)
   };
 
