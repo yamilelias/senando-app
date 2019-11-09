@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { Block, Button, Text, theme } from 'galio-framework';
 import { Search, List, Icon } from '../components';
 import Youtube from '../services/Youtube';
+import Videos from '../services/Videos';
 import argonTheme from '../constants/Theme';
  
 const { width } = Dimensions.get('screen');
@@ -23,6 +24,7 @@ function Home() {
 
   const search = () => {
     setIsFetching(true);
+    Videos.getAllVideos();
     Youtube.search(query, function then({ data }) {
       setPages({ nextPageToken: data.nextPageToken, prevPageToken: data.prevPageToken })
       setElements(data.items);
