@@ -24,7 +24,7 @@ function Home() {
 
   const search = () => {
     setIsFetching(true);
-    Videos.getAllVideos();
+    // TODO: Change Youtube for Videos.searchVideo(value)
     Youtube.search(query, function then({ data }) {
       setPages({ nextPageToken: data.nextPageToken, prevPageToken: data.prevPageToken })
       setElements(data.items);
