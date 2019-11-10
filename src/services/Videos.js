@@ -4,13 +4,14 @@ class Videos {
   videos = [];
 
   getAllVideos() {
-    firestore.collection('videos').get().then((querySnapshot) => {
+    return firestore.collection('videos').orderBy('name').get().then((querySnapshot) => {
       if(!querySnapshot.empty) {
         querySnapshot.forEach((doc) => {
           this.videos.push(doc.data());
-          console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
         });
       }
+
+      return this.videos;
     });
   }
 

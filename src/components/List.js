@@ -8,13 +8,12 @@ const { width } = Dimensions.get('screen');
 
 function List({ elements, error }) {
   renderElements = (value, index) => {
-    const { title, thumbnails } = value.snippet;
+    const { name, id } = value;
     const item = {
-      id: value.id.videoId,
-      title: `${title.charAt(0).toUpperCase()}${title.substr(1, title.length).toLowerCase()}`,
-      image: thumbnails.default.url,
+      id,
+      title: `${name.charAt(0).toUpperCase()}${name.substr(1, name.length).toLowerCase()}`,
+      // image: thumbnails.default.url,
       cta: 'Ver Video',
-      horizontal: true
     };
 
     return (
@@ -55,7 +54,7 @@ const styles = StyleSheet.create({
   },
   list: {
     width: width - theme.SIZES.BASE * 2,
-    paddingVertical: theme.SIZES.BASE,
+    paddingVertical: theme.SIZES.BASE / 2,
   },
 });
 

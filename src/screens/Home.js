@@ -1,8 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
-import { Block, Button, Text, theme } from 'galio-framework';
-import { Search, List, Icon } from '../components';
-import Youtube from '../services/Youtube';
+import { Block, theme } from 'galio-framework';
+import { Search, List } from '../components';
 import Videos from '../services/Videos';
 import argonTheme from '../constants/Theme';
  
@@ -13,36 +12,27 @@ function Home() {
   const [ elements, setElements ] = useState([]);
   const [ error, setError ] = useState(false);
   const [ value, setValue ] = useState('');
-  const [ pages, setPages ] = useState({ nextPageToken: '', prevPageToken: '' });
-
-  const query = {
-    part: 'id,snippet',
-    channelId: 'UCovgvn883vmBMeAOo2OyXOQ',
-    maxResults: 50,
-    q: encodeURIComponent(value)
-  };
 
   const search = () => {
     setIsFetching(true);
-    // TODO: Change Youtube for Videos.searchVideo(value)
-    Youtube.search(query, function then({ data }) {
-      setPages({ nextPageToken: data.nextPageToken, prevPageToken: data.prevPageToken })
-      setElements(data.items);
-      setIsFetching(false);
-    }, function error(error) {
-      setError(true);
-    });
+    const elements = Videos.searchVideo(value);
+    setElements(elements);
+    setIsFetching(false);
   };
 
   useEffect(() => {
-    search();
+    Videos.getAllVideos().then((result) => {
+      setElements(result);
+    }).catch(() => {
+      setError(true);
+    });
   }, []);
 
   return (
     <Fragment>
       <Block style={styles.search}>
         <Search value={value} onChangeText={(text) => setValue(text)} onSubmitEditing={search} />
-        <Block flex row style={pages.nextPageToken || pages.prevPageToken ? styles.options : ''}>
+        {/* <Block flex row style={pages.nextPageToken || pages.prevPageToken ? styles.options : ''}>
           { pages.prevPageToken ? (
             <Button shadowless style={[styles.tab, styles.divider]} onPress={() => console.log('Previous Page', pages.prevPageToken)}>
               <Block row left>
@@ -59,7 +49,7 @@ function Home() {
               </Block>
             </Button>
           ): null }
-        </Block>
+        </Block> */}
       </Block>
       <Block flex center style={styles.home}>
         <List isFetching={isFetching} error={error} elements={elements}/>
