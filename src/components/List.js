@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
   },
   list: {
     width: width - theme.SIZES.BASE * 2,
-    paddingVertical: theme.SIZES.BASE / 2,
+    paddingVertical: theme.SIZES.BASE / 2
+    ,
   },
 });
 

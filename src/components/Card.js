@@ -7,12 +7,27 @@ import { Block, Text, theme } from 'galio-framework';
 import { argonTheme } from '../constants';
 
 
-function Card({ navigation, item, style, horizontal, ctaColor }) {
+function Card(props) {
+  const { navigation, item, horizontal, full, style, ctaColor, imageStyle } = props;
   const { title, cta, id } = item;
   const cardContainer = [ styles.card, styles.shadow, style ];
+    
+  const imageStyles = [
+    full ? styles.fullImage : styles.horizontalImage,
+    imageStyle
+  ];
+  const imgContainer = [styles.imageContainer,
+    horizontal ? styles.horizontalStyles : styles.verticalStyles,
+    styles.shadow
+  ];
 
   return (
     <Block row={horizontal} card flex style={cardContainer}>
+      <TouchableWithoutFeedback onPress={() => navigation.navigate('Details', { title, id })}>
+        <Block flex style={imgContainer}>
+          <Image source={{uri: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`}} style={imageStyles} />
+        </Block>
+      </TouchableWithoutFeedback>
       <TouchableWithoutFeedback onPress={() => navigation.navigate('Details', { title, id })}>
         <Block flex space="between" style={styles.cardDescription}>
           <Text size={14} style={styles.cardTitle}>{title}</Text>
@@ -38,7 +53,7 @@ const styles = StyleSheet.create({
     marginVertical: theme.SIZES.BASE,
     borderWidth: 0,
     minHeight: 114,
-    marginBottom: 16
+    marginBottom: 5
   },
   cardTitle: {
     flex: 1,

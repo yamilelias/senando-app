@@ -20,47 +20,11 @@ class Register extends React.Component {
         <StatusBar hidden />
         <ImageBackground
           source={Images.RegisterBackground}
-          style={{ width, height, zIndex: 1 }}
-        >
+          style={{ width, height, zIndex: 1 }} >
           <Block flex middle>
             <Block style={styles.registerContainer}>
-              <Block flex={0.25} middle style={styles.socialConnect}>
-                <Text color="#8898AA" size={12}>
-                  Sign up with
-                </Text>
-                <Block row style={{ marginTop: theme.SIZES.BASE }}>
-                  <Button style={{ ...styles.socialButtons, marginRight: 30 }}>
-                    <Block row>
-                      <Icon
-                        name="logo-github"
-                        family="Ionicon"
-                        size={14}
-                        color={"black"}
-                        style={{ marginTop: 2, marginRight: 5 }}
-                      />
-                      <Text style={styles.socialTextButtons}>GITHUB</Text>
-                    </Block>
-                  </Button>
-                  <Button style={styles.socialButtons}>
-                    <Block row>
-                      <Icon
-                        name="logo-google"
-                        family="Ionicon"
-                        size={14}
-                        color={"black"}
-                        style={{ marginTop: 2, marginRight: 5 }}
-                      />
-                      <Text style={styles.socialTextButtons}>GOOGLE</Text>
-                    </Block>
-                  </Button>
-                </Block>
-              </Block>
+              {/* { signUpWith() } */}
               <Block flex>
-                <Block flex={0.17} middle>
-                  <Text color="#8898AA" size={12}>
-                    Or sign up the classic way
-                  </Text>
-                </Block>
                 <Block flex center>
                   <KeyboardAvoidingView
                     style={{ flex: 1 }}
@@ -70,7 +34,7 @@ class Register extends React.Component {
                     <Block width={width * 0.8} style={{ marginBottom: 15 }}>
                       <Input
                         borderless
-                        placeholder="Name"
+                        placeholder="Nombre"
                         iconContent={
                           <Icon
                             size={16}
@@ -112,15 +76,7 @@ class Register extends React.Component {
                           />
                         }
                       />
-                      <Block row style={styles.passwordCheck}>
-                        <Text size={12} color={argonTheme.COLORS.MUTED}>
-                          password strength:
-                        </Text>
-                        <Text bold size={12} color={argonTheme.COLORS.SUCCESS}>
-                          {" "}
-                          strong
-                        </Text>
-                      </Block>
+                      {/* { passwordStrength() } */}
                     </Block>
                     <Block row width={width * 0.75}>
                       <Checkbox
@@ -128,23 +84,23 @@ class Register extends React.Component {
                           borderWidth: 3
                         }}
                         color={argonTheme.COLORS.PRIMARY}
-                        label="I agree with the"
+                        label="Acepto la"
                       />
                       <Button
-                        style={{ width: 100 }}
+                        style={styles.privacyButton}
                         color="transparent"
                         textStyle={{
                           color: argonTheme.COLORS.PRIMARY,
                           fontSize: 14
                         }}
                       >
-                        Privacy Policy
+                        Política de Privacidad
                       </Button>
                     </Block>
                     <Block middle>
                       <Button color="primary" style={styles.createButton}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                          CREATE ACCOUNT
+                          Crear Cuenta
                         </Text>
                       </Button>
                     </Block>
@@ -157,6 +113,56 @@ class Register extends React.Component {
       </Block>
     );
   }
+}
+
+function signUpWith() {
+  return (
+    <Block flex={0.25} middle style={styles.socialConnect}>
+      <Text color="#8898AA" size={12}>
+        Sign up with
+      </Text>
+      <Block row style={{ marginTop: theme.SIZES.BASE }}>
+        <Button style={{ ...styles.socialButtons, marginRight: 30 }}>
+          <Block row>
+            <Icon
+              name="logo-github"
+              family="Ionicon"
+              size={14}
+              color={"black"}
+              style={{ marginTop: 2, marginRight: 5 }}
+            />
+            <Text style={styles.socialTextButtons}>GITHUB</Text>
+          </Block>
+        </Button>
+        <Button style={styles.socialButtons}>
+          <Block row>
+            <Icon
+              name="logo-google"
+              family="Ionicon"
+              size={14}
+              color={"black"}
+              style={{ marginTop: 2, marginRight: 5 }}
+            />
+            <Text style={styles.socialTextButtons}>GOOGLE</Text>
+          </Block>
+        </Button>
+      </Block>
+    </Block>
+  );
+}
+
+function passwordStrength() {
+  return (
+    <Block row style={styles.passwordCheck}>
+      <Text size={12} color={argonTheme.COLORS.MUTED}>
+        password strength:
+      </Text>
+      <Text bold size={12} color={argonTheme.COLORS.SUCCESS}>
+        {" "}
+        strong
+      </Text>
+    </Block>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -206,7 +212,13 @@ const styles = StyleSheet.create({
     paddingTop: 13,
     paddingBottom: 30
   },
+  privacyButton: {
+    width: 200,
+    borderColor: 'transparent',
+    shadowOpacity: 0
+  },
   createButton: {
+    textTransform: "uppercase",
     width: width * 0.5,
     marginTop: 25
   }

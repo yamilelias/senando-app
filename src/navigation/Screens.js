@@ -4,11 +4,8 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 
-import { Block } from "galio-framework";
-
 // screens
 import Home from "../screens/Home";
-import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
@@ -142,7 +139,7 @@ const AppStack = createDrawerNavigator(
           <DrawerItem focused={focused} screen="Profile" title="Perfil" />
         )
       })
-    },
+    },*/
     Account: {
       screen: Register,
       navigationOptions: navOpt => ({
@@ -150,7 +147,7 @@ const AppStack = createDrawerNavigator(
           <DrawerItem focused={focused} screen="Register" title="Registro" />
         )
       })
-    },
+    },/*
     Elements: {
       screen: ElementsStack,
       navigationOptions: navOpt => ({
